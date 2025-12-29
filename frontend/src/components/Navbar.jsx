@@ -7,23 +7,18 @@ function Navbar() {
     const toggleNav = () => setIsOpen(!isOpen);
     const closeNav = () => setIsOpen(false);
 
-    const navItems = [
-        { path: '/tasks', label: 'View Tasks', icon: '📋', description: 'Browse all tasks' },
-        { path: '/add', label: 'Add Task', icon: '➕', description: 'Create new task' },
-    ];
-
     return (
         <>
             {/* Mobile toggle button */}
             <button className="mobile-nav-toggle" onClick={toggleNav} aria-label="Toggle navigation">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     {isOpen ? (
                         <path d="M18 6L6 18M6 6l12 12" />
                     ) : (
                         <path d="M3 12h18M3 6h18M3 18h18" />
                     )}
                 </svg>
-                <span style={{ fontSize: '0.9rem', fontWeight: 500 }}>Menu</span>
+                <span style={{ fontSize: '0.875rem', fontWeight: 500 }}>Menu</span>
             </button>
 
             {/* Overlay for mobile */}
@@ -32,35 +27,52 @@ function Navbar() {
             {/* Sidebar */}
             <nav className={`navbar ${isOpen ? 'open' : ''}`}>
                 <div className="navbar-brand">
-                    <div className="navbar-logo">✓</div>
-                    <div>
-                        <span className="navbar-title">TaskFlow</span>
-                    </div>
+                    <div className="navbar-logo">T</div>
+                    <span className="navbar-title">TaskFlow</span>
                 </div>
 
-                <p className="nav-section-title">Navigation</p>
+                <p className="nav-section-title">Menu</p>
 
                 <ul className="nav-links">
-                    {navItems.map((item) => (
-                        <li key={item.path}>
-                            <NavLink
-                                to={item.path}
-                                className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-                                onClick={closeNav}
-                            >
-                                <span className="nav-link-icon">{item.icon}</span>
-                                <span>{item.label}</span>
-                            </NavLink>
-                        </li>
-                    ))}
+                    <li>
+                        <NavLink
+                            to="/tasks"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeNav}
+                        >
+                            <span className="nav-link-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="3" y="3" width="7" height="7" rx="1" />
+                                    <rect x="14" y="3" width="7" height="7" rx="1" />
+                                    <rect x="3" y="14" width="7" height="7" rx="1" />
+                                    <rect x="14" y="14" width="7" height="7" rx="1" />
+                                </svg>
+                            </span>
+                            <span>View Tasks</span>
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/add"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                            onClick={closeNav}
+                        >
+                            <span className="nav-link-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 8v8M8 12h8" />
+                                </svg>
+                            </span>
+                            <span>Add Task</span>
+                        </NavLink>
+                    </li>
                 </ul>
 
                 <div className="navbar-footer">
-                    <p>Professional Task Management</p>
-                    <p>Built for demonstration</p>
+                    <p>Task Management System</p>
                     <span className="version-badge">
-                        <span style={{ width: '6px', height: '6px', background: '#10b981', borderRadius: '50%' }}></span>
-                        v1.0.0 • Stable
+                        <span style={{ width: '5px', height: '5px', background: 'currentColor', borderRadius: '50%' }}></span>
+                        v1.0.0
                     </span>
                 </div>
             </nav>

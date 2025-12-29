@@ -88,11 +88,11 @@ function EditTask() {
             <div className="fade-in">
                 <div className="page-header">
                     <h1 className="page-title">Edit Task</h1>
-                    <p className="page-subtitle">Update your task details</p>
+                    <p className="page-subtitle">Update task details</p>
                 </div>
                 <div className="loading-container">
                     <div className="spinner"></div>
-                    <p className="loading-text">Loading task details...</p>
+                    <p className="loading-text">Loading task...</p>
                 </div>
             </div>
         );
@@ -103,16 +103,19 @@ function EditTask() {
             <div className="fade-in">
                 <div className="page-header">
                     <h1 className="page-title">Edit Task</h1>
-                    <p className="page-subtitle">Update your task details</p>
+                    <p className="page-subtitle">Update task details</p>
                 </div>
                 <div className="card">
                     <div className="alert alert-error" style={{ margin: 0 }}>
-                        <span className="alert-icon">⚠️</span>
+                        <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4M12 16h.01" />
+                        </svg>
                         <span>{error}</span>
                     </div>
                     <div style={{ marginTop: 'var(--spacing-lg)' }}>
                         <Link to="/tasks" className="btn btn-secondary">
-                            ← Back to Tasks
+                            Back to Tasks
                         </Link>
                     </div>
                 </div>
@@ -131,7 +134,10 @@ function EditTask() {
 
             {error && (
                 <div className="alert alert-error">
-                    <span className="alert-icon">⚠️</span>
+                    <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v4M12 16h.01" />
+                    </svg>
                     <span>{error}</span>
                 </div>
             )}
@@ -140,22 +146,22 @@ function EditTask() {
                 <form className="form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="title" className="form-label">
-                            Task Title <span className="required">*</span>
+                            Title <span className="required">*</span>
                         </label>
                         <input
                             type="text"
                             id="title"
                             name="title"
                             className="form-input"
-                            placeholder="Enter task title..."
+                            placeholder="Enter task title"
                             value={formData.title}
                             onChange={handleChange}
                             disabled={saving}
                         />
                         {errors.title ? (
-                            <p className="form-error">⚠️ {errors.title}</p>
+                            <p className="form-error">{errors.title}</p>
                         ) : (
-                            <p className="form-hint">Give your task a clear, descriptive title</p>
+                            <p className="form-hint">A clear, descriptive title</p>
                         )}
                     </div>
 
@@ -167,15 +173,15 @@ function EditTask() {
                             id="description"
                             name="description"
                             className="form-textarea"
-                            placeholder="Add more details about this task (optional)..."
+                            placeholder="Add details (optional)"
                             value={formData.description}
                             onChange={handleChange}
                             disabled={saving}
                         />
                         {errors.description ? (
-                            <p className="form-error">⚠️ {errors.description}</p>
+                            <p className="form-error">{errors.description}</p>
                         ) : (
-                            <p className="form-hint">{formData.description.length}/500 characters</p>
+                            <p className="form-hint">{formData.description.length}/500</p>
                         )}
                     </div>
 
@@ -191,10 +197,9 @@ function EditTask() {
                             onChange={handleChange}
                             disabled={saving}
                         >
-                            <option value="pending">🟡 Pending - Task not yet completed</option>
-                            <option value="completed">🟢 Completed - Task is finished</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
                         </select>
-                        <p className="form-hint">Update the current status of your task</p>
                     </div>
 
                     <div className="form-actions">
@@ -202,28 +207,30 @@ function EditTask() {
                             type="submit"
                             className="btn btn-primary btn-lg"
                             disabled={saving || !hasChanges}
-                            title={!hasChanges ? 'No changes to save' : ''}
                         >
                             {saving ? (
                                 <>
-                                    <span className="spinner" style={{ width: '18px', height: '18px', margin: 0, borderWidth: '2px' }}></span>
-                                    Saving Changes...
+                                    <span className="spinner" style={{ width: '16px', height: '16px', margin: 0, borderWidth: '2px' }}></span>
+                                    Saving...
                                 </>
                             ) : (
                                 <>
-                                    <span>💾</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" />
+                                        <path d="M17 21v-8H7v8M7 3v5h8" />
+                                    </svg>
                                     Save Changes
                                 </>
                             )}
                         </button>
                         <Link to="/tasks" className="btn btn-secondary btn-lg">
-                            ← Cancel
+                            Cancel
                         </Link>
                     </div>
 
                     {!hasChanges && originalTask && (
-                        <p style={{ textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: 'var(--spacing-md)' }}>
-                            ℹ️ Make changes to enable the save button
+                        <p style={{ textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.8125rem', marginTop: 'var(--spacing-md)' }}>
+                            Make changes to enable save
                         </p>
                     )}
                 </form>

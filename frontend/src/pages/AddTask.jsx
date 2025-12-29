@@ -55,13 +55,16 @@ function AddTask() {
     return (
         <div className="fade-in">
             <div className="page-header">
-                <h1 className="page-title">Add New Task</h1>
-                <p className="page-subtitle">Create a new task to track your work and stay organized</p>
+                <h1 className="page-title">Create Task</h1>
+                <p className="page-subtitle">Add a new task to your workspace</p>
             </div>
 
             {error && (
                 <div className="alert alert-error">
-                    <span className="alert-icon">⚠️</span>
+                    <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v4M12 16h.01" />
+                    </svg>
                     <span>{error}</span>
                 </div>
             )}
@@ -70,23 +73,23 @@ function AddTask() {
                 <form className="form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="title" className="form-label">
-                            Task Title <span className="required">*</span>
+                            Title <span className="required">*</span>
                         </label>
                         <input
                             type="text"
                             id="title"
                             name="title"
                             className="form-input"
-                            placeholder="Enter a descriptive task title..."
+                            placeholder="Enter task title"
                             value={formData.title}
                             onChange={handleChange}
                             disabled={loading}
                             autoFocus
                         />
                         {errors.title ? (
-                            <p className="form-error">⚠️ {errors.title}</p>
+                            <p className="form-error">{errors.title}</p>
                         ) : (
-                            <p className="form-hint">Give your task a clear, descriptive title</p>
+                            <p className="form-hint">A clear, descriptive title for your task</p>
                         )}
                     </div>
 
@@ -98,21 +101,21 @@ function AddTask() {
                             id="description"
                             name="description"
                             className="form-textarea"
-                            placeholder="Add more details about this task (optional)..."
+                            placeholder="Add details about this task (optional)"
                             value={formData.description}
                             onChange={handleChange}
                             disabled={loading}
                         />
                         {errors.description ? (
-                            <p className="form-error">⚠️ {errors.description}</p>
+                            <p className="form-error">{errors.description}</p>
                         ) : (
-                            <p className="form-hint">{formData.description.length}/500 characters</p>
+                            <p className="form-hint">{formData.description.length}/500</p>
                         )}
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="status" className="form-label">
-                            Initial Status
+                            Status
                         </label>
                         <select
                             id="status"
@@ -122,28 +125,30 @@ function AddTask() {
                             onChange={handleChange}
                             disabled={loading}
                         >
-                            <option value="pending">🟡 Pending - Task not yet started</option>
-                            <option value="completed">🟢 Completed - Task is finished</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
                         </select>
-                        <p className="form-hint">Set the initial status of your task</p>
+                        <p className="form-hint">Set the initial status</p>
                     </div>
 
                     <div className="form-actions">
                         <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
                             {loading ? (
                                 <>
-                                    <span className="spinner" style={{ width: '18px', height: '18px', margin: 0, borderWidth: '2px' }}></span>
-                                    Creating Task...
+                                    <span className="spinner" style={{ width: '16px', height: '16px', margin: 0, borderWidth: '2px' }}></span>
+                                    Creating...
                                 </>
                             ) : (
                                 <>
-                                    <span>✨</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M12 5v14M5 12h14" />
+                                    </svg>
                                     Create Task
                                 </>
                             )}
                         </button>
                         <Link to="/tasks" className="btn btn-secondary btn-lg">
-                            ← Cancel
+                            Cancel
                         </Link>
                     </div>
                 </form>

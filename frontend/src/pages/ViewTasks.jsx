@@ -39,12 +39,12 @@ function ViewTasks() {
         return (
             <div className="fade-in">
                 <div className="page-header">
-                    <h1 className="page-title">View Tasks</h1>
-                    <p className="page-subtitle">Manage and track all your tasks in one place</p>
+                    <h1 className="page-title">Tasks</h1>
+                    <p className="page-subtitle">Manage and track all your tasks</p>
                 </div>
                 <div className="loading-container">
                     <div className="spinner"></div>
-                    <p className="loading-text">Loading your tasks...</p>
+                    <p className="loading-text">Loading tasks...</p>
                 </div>
             </div>
         );
@@ -54,11 +54,14 @@ function ViewTasks() {
         return (
             <div className="fade-in">
                 <div className="page-header">
-                    <h1 className="page-title">View Tasks</h1>
-                    <p className="page-subtitle">Manage and track all your tasks in one place</p>
+                    <h1 className="page-title">Tasks</h1>
+                    <p className="page-subtitle">Manage and track all your tasks</p>
                 </div>
                 <div className="alert alert-error">
-                    <span className="alert-icon">⚠️</span>
+                    <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 8v4M12 16h.01" />
+                    </svg>
                     <span>{error}</span>
                 </div>
                 <button className="btn btn-primary" onClick={fetchTasks}>
@@ -72,26 +75,26 @@ function ViewTasks() {
         return (
             <div className="fade-in">
                 <div className="page-header">
-                    <h1 className="page-title">View Tasks</h1>
-                    <p className="page-subtitle">Manage and track all your tasks in one place</p>
+                    <h1 className="page-title">Tasks</h1>
+                    <p className="page-subtitle">Manage and track all your tasks</p>
                 </div>
                 <div className="card">
                     <div className="empty-state">
                         <div className="empty-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                                 <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
                                 <rect x="9" y="3" width="6" height="4" rx="1" />
-                                <line x1="9" y1="12" x2="15" y2="12" />
-                                <line x1="9" y1="16" x2="13" y2="16" />
                             </svg>
                         </div>
                         <h2 className="empty-title">No tasks yet</h2>
                         <p className="empty-description">
-                            Get started by creating your first task. Stay organized and track your progress!
+                            Create your first task to get started with organizing your work.
                         </p>
                         <Link to="/add" className="btn btn-primary btn-lg">
-                            <span>➕</span>
-                            Create Your First Task
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M12 5v14M5 12h14" />
+                            </svg>
+                            Create Task
                         </Link>
                     </div>
                 </div>
@@ -104,16 +107,18 @@ function ViewTasks() {
             <div className="page-header">
                 <div className="page-header-row">
                     <div>
-                        <h1 className="page-title">View Tasks</h1>
+                        <h1 className="page-title">Tasks</h1>
                         <p className="page-subtitle">
                             <strong>{tasks.length}</strong> task{tasks.length !== 1 ? 's' : ''} total
-                            {pendingCount > 0 && <> • <span style={{ color: '#f59e0b' }}>{pendingCount} pending</span></>}
-                            {completedCount > 0 && <> • <span style={{ color: '#10b981' }}>{completedCount} completed</span></>}
+                            {pendingCount > 0 && <> · <span style={{ color: 'var(--warning)' }}>{pendingCount} pending</span></>}
+                            {completedCount > 0 && <> · <span style={{ color: 'var(--success)' }}>{completedCount} completed</span></>}
                         </p>
                     </div>
                     <Link to="/add" className="btn btn-primary">
-                        <span>➕</span>
-                        Add New Task
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
+                        Add Task
                     </Link>
                 </div>
             </div>
@@ -125,7 +130,11 @@ function ViewTasks() {
                             <div style={{ flex: 1 }}>
                                 <h3 className="task-title">{task.title}</h3>
                                 <p className="task-date">
-                                    📅 {formatDate(task.createdAt)}
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" />
+                                        <path d="M16 2v4M8 2v4M3 10h18" />
+                                    </svg>
+                                    {formatDate(task.createdAt)}
                                 </p>
                             </div>
                             <span className={`status-badge ${task.status}`}>
@@ -137,18 +146,23 @@ function ViewTasks() {
                         {task.description ? (
                             <p className="task-description">{task.description}</p>
                         ) : (
-                            <p className="task-description" style={{ fontStyle: 'italic', opacity: 0.6 }}>
-                                No description provided
+                            <p className="task-description" style={{ fontStyle: 'italic', opacity: 0.5 }}>
+                                No description
                             </p>
                         )}
 
                         <div className="task-footer">
                             <div className="task-actions">
-                                <Link to={`/edit/${task.id}`} className="btn btn-secondary btn-icon" title="Edit task">
-                                    ✏️
+                                <Link to={`/edit/${task.id}`} className="btn btn-secondary btn-icon" title="Edit">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                                        <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                    </svg>
                                 </Link>
-                                <Link to={`/delete/${task.id}`} className="btn btn-ghost btn-icon" title="Delete task" style={{ color: '#ef4444' }}>
-                                    🗑️
+                                <Link to={`/delete/${task.id}`} className="btn btn-ghost btn-icon" title="Delete" style={{ color: 'var(--danger)' }}>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                                    </svg>
                                 </Link>
                             </div>
                         </div>

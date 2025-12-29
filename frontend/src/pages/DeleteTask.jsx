@@ -44,8 +44,6 @@ function DeleteTask() {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
         });
     };
 
@@ -54,11 +52,11 @@ function DeleteTask() {
             <div className="fade-in">
                 <div className="page-header">
                     <h1 className="page-title">Delete Task</h1>
-                    <p className="page-subtitle">Remove a task permanently</p>
+                    <p className="page-subtitle">Remove task permanently</p>
                 </div>
                 <div className="loading-container">
                     <div className="spinner"></div>
-                    <p className="loading-text">Loading task details...</p>
+                    <p className="loading-text">Loading...</p>
                 </div>
             </div>
         );
@@ -69,16 +67,19 @@ function DeleteTask() {
             <div className="fade-in">
                 <div className="page-header">
                     <h1 className="page-title">Delete Task</h1>
-                    <p className="page-subtitle">Remove a task permanently</p>
+                    <p className="page-subtitle">Remove task permanently</p>
                 </div>
                 <div className="card">
                     <div className="alert alert-error" style={{ margin: 0 }}>
-                        <span className="alert-icon">⚠️</span>
+                        <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4M12 16h.01" />
+                        </svg>
                         <span>{error}</span>
                     </div>
                     <div style={{ marginTop: 'var(--spacing-lg)' }}>
                         <Link to="/tasks" className="btn btn-secondary">
-                            ← Back to Tasks
+                            Back to Tasks
                         </Link>
                     </div>
                 </div>
@@ -97,37 +98,40 @@ function DeleteTask() {
                 <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
                     <div className="delete-warning">
                         <div className="delete-warning-icon">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M12 9v4M12 17h.01" />
                                 <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
                             </svg>
                         </div>
-                        <h3 className="delete-warning-title">Are you sure you want to delete this task?</h3>
+                        <h3 className="delete-warning-title">Delete this task?</h3>
                         <p className="delete-warning-text">
-                            This action is permanent and cannot be reversed. The task and all its data will be permanently removed.
+                            This will permanently remove the task and all its data.
                         </p>
                     </div>
 
                     {error && (
                         <div className="alert alert-error" style={{ margin: 'var(--spacing-lg)', marginTop: 0 }}>
-                            <span className="alert-icon">⚠️</span>
+                            <svg className="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 8v4M12 16h.01" />
+                            </svg>
                             <span>{error}</span>
                         </div>
                     )}
 
                     {task && (
-                        <div style={{ padding: '0 var(--spacing-xl) var(--spacing-xl)' }}>
+                        <div style={{ padding: '0 var(--spacing-lg) var(--spacing-lg)' }}>
                             <div className="delete-task-preview">
                                 <h4 className="delete-task-title">{task.title}</h4>
                                 {task.description ? (
                                     <p className="delete-task-description">{task.description}</p>
                                 ) : (
-                                    <p className="delete-task-description" style={{ fontStyle: 'italic', opacity: 0.6 }}>
+                                    <p className="delete-task-description" style={{ fontStyle: 'italic', opacity: 0.5 }}>
                                         No description
                                     </p>
                                 )}
                                 <div className="delete-task-meta">
-                                    <span>📅 Created: {formatDate(task.createdAt)}</span>
+                                    <span>Created: {formatDate(task.createdAt)}</span>
                                     <span className={`status-badge ${task.status}`}>
                                         <span className="status-dot"></span>
                                         {task.status}
@@ -135,7 +139,7 @@ function DeleteTask() {
                                 </div>
                             </div>
 
-                            <div className="form-actions" style={{ borderTop: 'none', paddingTop: 0, marginTop: 'var(--spacing-lg)' }}>
+                            <div className="form-actions" style={{ borderTop: 'none', paddingTop: 0, marginTop: 0 }}>
                                 <button
                                     className="btn btn-danger btn-lg"
                                     onClick={handleDelete}
@@ -143,18 +147,20 @@ function DeleteTask() {
                                 >
                                     {deleting ? (
                                         <>
-                                            <span className="spinner" style={{ width: '18px', height: '18px', margin: 0, borderWidth: '2px', borderTopColor: 'white' }}></span>
+                                            <span className="spinner" style={{ width: '16px', height: '16px', margin: 0, borderWidth: '2px', borderTopColor: 'white' }}></span>
                                             Deleting...
                                         </>
                                     ) : (
                                         <>
-                                            <span>🗑️</span>
-                                            Yes, Delete Task
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2" />
+                                            </svg>
+                                            Delete Task
                                         </>
                                     )}
                                 </button>
                                 <Link to="/tasks" className="btn btn-secondary btn-lg">
-                                    ← Cancel
+                                    Cancel
                                 </Link>
                             </div>
                         </div>
