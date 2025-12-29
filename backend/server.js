@@ -12,7 +12,7 @@ const DATA_FILE = path.join(__dirname, 'data.json');
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production'
     ? [
-      'https://your-frontend-url.vercel.app', // Replace with your Vercel URL
+      'https://task-manager.vercel.app', // Replace with your Vercel URL
       /\.vercel\.app$/
     ]
     : ['http://localhost:5173', 'http://127.0.0.1:5173'],
