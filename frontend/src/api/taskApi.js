@@ -1,5 +1,5 @@
 const API_BASE_URL = import.meta.env.PROD
-    ? 'https://your-backend-url.onrender.com/api'  // Replace with your Render URL after deployment
+    ? 'https://task-manager-api-2mzu.onrender.com/api'  // Replace with your Render URL after deployment
     : '/api';
 
 // Helper function for API requests
