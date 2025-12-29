@@ -1,0 +1,25 @@
+{
+  "tasks": [
+    {
+      "id": "2341f7db-6469-4295-961f-08303ea1479d",
+      "title": "Test Task",
+      "description": "Testing the API",
+      "status": "pending",
+      "createdAt": "2025-12-29T11:50:57.798Z"
+    },
+    {
+      "id": "b2d221a8-8e24-44cd-b477-8f12715f0f88",
+      "title": "cooking",
+      "description": "",
+      "status": "completed",
+      "createdAt": "2025-12-29T12:00:16.170Z"
+    },
+    {
+      "id": "d8885c55-cefa-44d6-b502-bcd628d4551b",
+      "title": "cleaning",
+      "description": "",
+      "status": "completed",
+      "createdAt": "2025-12-29T12:04:42.125Z"
+    }
+  ]
+}
